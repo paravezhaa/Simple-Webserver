@@ -36,9 +36,44 @@ Start the server script and check for errors.
 Open a browser and navigate to http://127.0.0.1:8000 (or the assigned port).
 
 ## PROGRAM:
+admin.py
+python
+from django.contrib import admin
+from .models import Product, ProductAdmin
 
+admin.site.register(Product, ProductAdmin)
+
+ models.py
+python
+from django.db import models
+from django.contrib import admin
+
+class Product(models.Model):
+    product_id = models.CharField(max_length=20, primary_key=True)
+    name = models.CharField(max_length=100)
+    category = models.CharField(max_length=50)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    rating = models.FloatField()
+    seller = models.CharField(max_length=100)
+    stock = models.IntegerField()
+    offer = models.CharField(max_length=50, blank=True)
+    delivery_date = models.DateField()
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = (
+        'product_id',
+        'name',
+        'category',
+        'price',
+        'rating',
+        'seller',
+        'stock',
+        'offer',
+        'delivery_date',
+    )
 
 ## OUTPUT:
+<img width="1918" height="974" alt="EX 01" src="https://github.com/user-attachments/assets/cc32d21a-ff94-419f-9a01-ee509d7cb47a" />
 
 
 ## RESULT:
